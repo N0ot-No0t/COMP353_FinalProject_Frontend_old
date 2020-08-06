@@ -1,14 +1,14 @@
 import React from 'react';
 import './App.css';
 
-function Employer() {
+function Admin() {
   return (
     <div className="App">
       <header className="App-header">
-        Employer Page
+        Admin Page
       </header>
     </div>
   );
 }
 
-export default Employer;
+export default Admin;

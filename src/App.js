@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import Employer from './Employer';
 import User from './User';
+import Admin from './Admin';
 
 //test123
 
@@ -20,17 +21,18 @@ function App() {
       <Router>
       <div>
         <nav>
-          <ul>
-            <li>
+            <div> 
               <Link to="/Home">Home</Link>
-            </li>
-            <li>
+            </div>
+            <div> 
+            </div>
               <Link to="/Employer">Employer</Link>
-            </li>
-            <li>
-              <Link to="/User">User</Link>
-            </li>
-          </ul>
+            <div> 
+               <Link to="/User">User</Link>
+            </div>
+            <div> 
+               <Link to="/Admin">Admin</Link>
+            </div>
         </nav>
 
         {/* A <Switch> looks through its children <Route>s and
@@ -45,6 +47,9 @@ function App() {
           <Route path="/Home">
             <Home />
           </Route>
+          <Route path="/Admin" component={Admin}>
+            <Admin />
+          </Route>
         </Switch>
       </div>
     </Router>
@@ -57,17 +62,5 @@ function App() {
 function Home() {
   return <h2>Welcome to the Web Career Portal Site</h2>;
 }
-
-/*
-
-
-function Employer() {
-  return <h2>Employer</h2>;
-}
-
-function User() {
-  return <h2>User</h2>;
-}
-*/
 
 export default App;
