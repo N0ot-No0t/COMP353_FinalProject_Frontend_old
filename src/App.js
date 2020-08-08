@@ -10,8 +10,7 @@ import {
 import Employer from './Employer';
 import User from './User';
 import Admin from './Admin';
-
-//test123
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
