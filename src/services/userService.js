@@ -7,7 +7,7 @@ class UserDataService {
   }
 
   create(data) {
-    return http.post("/register", data);
+    return http.post("/user", data);
   }
 
   get(id) {
