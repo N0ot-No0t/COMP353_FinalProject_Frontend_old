@@ -2,31 +2,31 @@ import http from "../http-common";
 
 class JobDataService {
   getAll() {
-    return http.get("/jobs");
+    return http.get("/job");
   }
 
   get(id) {
-    return http.get(`/jobs/${id}`);
+    return http.get(`/job/${id}`);
   }
 
   create(data) {
-    return http.post("/jobs", data);
+    return http.post("/job", data);
   }
 
   update(id, data) {
-    return http.put(`/jobs/${id}`, data);
+    return http.put(`/job/${id}`, data);
   }
 
   delete(id) {
-    return http.delete(`/jobs/${id}`);
+    return http.delete(`/job/${id}`);
   }
 
   deleteAll() {
-    return http.delete(`/jobs`);
+    return http.delete(`/job`);
   }
 
   findByTitle(title) {
-    return http.get(`/jobs?title=${title}`);
+    return http.get(`/job?title=${title}`);
   }
 }
 

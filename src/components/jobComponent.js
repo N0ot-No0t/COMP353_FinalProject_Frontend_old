@@ -14,9 +14,11 @@ export default class Job extends Component {
 
     this.state = {
       currentJob: {
-        id: null,
+        jobID: null,
         title: "",
         description: "",
+        datePosted: "",
+        nbrOfPositionsAvailable: 0,
         published: false
       },
       message: ""
@@ -24,7 +26,7 @@ export default class Job extends Component {
   }
 
   componentDidMount() {
-    this.getJob(this.props.match.params.id);
+    this.getJob(this.props.match.params.jobID);
   }
 
   onChangeTitle(e) {
@@ -51,8 +53,8 @@ export default class Job extends Component {
     }));
   }
 
-  getJob(id) {
-    JobDataService.get(id)
+  getJob(jobID) {
+    JobDataService.get(jobID)
       .then(response => {
         this.setState({
           currentJob: response.data
@@ -66,13 +68,13 @@ export default class Job extends Component {
 
   updatePublished(status) {
     var data = {
-      id: this.state.currentJob.id,
+      jobID: this.state.currentJob.jobID,
       title: this.state.currentJob.title,
       description: this.state.currentJob.description,
       published: status
     };
 
-    JobDataService.update(this.state.currentJob.id, data)
+    JobDataService.update(this.state.currentJob.jobID, data)
       .then(response => {
         this.setState(prevState => ({
           currentJob: {
@@ -89,7 +91,7 @@ export default class Job extends Component {
 
   updateJob() {
     JobDataService.update(
-      this.state.currentJob.id,
+      this.state.currentJob.jobID,
       this.state.currentJob
     )
       .then(response => {
@@ -104,10 +106,10 @@ export default class Job extends Component {
   }
 
   deleteJob() {    
-    JobDataService.delete(this.state.currentJob.id)
+    JobDataService.delete(this.state.currentJob.jobID)
       .then(response => {
         console.log(response.data);
-        this.props.history.push('/jobs')
+        this.props.history.push('/job')
       })
       .catch(e => {
         console.log(e);
@@ -148,7 +150,7 @@ export default class Job extends Component {
                 <label>
                   <strong>Status:</strong>
                 </label>
-                {currentJob.published ? "Published" : "Pending"}
+                {currentJob.published ? "Applied" : "Not applied"}
               </div>
             </form>
 
@@ -157,14 +159,14 @@ export default class Job extends Component {
                 className="badge badge-primary mr-2"
                 onClick={() => this.updatePublished(false)}
               >
-                UnPublish
+                Un-apply
               </button>
             ) : (
               <button
                 className="badge badge-primary mr-2"
                 onClick={() => this.updatePublished(true)}
               >
-                Publish
+                Apply
               </button>
             )}
 

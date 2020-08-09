@@ -154,13 +154,26 @@ export default class JobsList extends Component {
               </div>
               <div>
                 <label>
+                  <strong>Number of Positions:</strong>
+                </label>{" "}
+                {currentJob.nbrOfPositionsAvailable}
+              </div>
+              <div>
+                <label>
                   <strong>Status:</strong>
                 </label>{" "}
-                {currentJob.published ? "Published" : "Pending"}
+                {currentJob.published ? "Applied" : "Not Applied"}
+              </div>
+
+              <div>
+                <label>
+                  <strong>Date Posted:</strong>
+                </label>{" "}
+                {currentJob.datePosted}
               </div>
 
               <Link
-                to={"/jobs/" + currentJob.id}
+                to={"/job/" + currentJob.jobID}
                 className="badge badge-warning"
               >
                 Edit

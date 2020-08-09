@@ -12,6 +12,7 @@ import addJob from "./components/addJob";
 import Job from "./components/jobComponent";
 import jobList from "./components/jobListComponent";
 
+
 function Employer() {
   return (
     <div className="App">
@@ -19,12 +20,12 @@ function Employer() {
       <Router>
         <div>
           <nav className="navbar-navbar-expand-navbar-dark-bg-dark">
-            <a href="/jobs" className="navbar-brand">
+            <a href="/job" className="navbar-brand">
               WebPortal
             </a>
             <div className="navbar-nav mr-auto">
               <li className="nav-item">
-                <Link to={"/jobs"} className="nav-link">
+                <Link to={"/job"} className="nav-link">
                   Jobs
                 </Link>
               </li>
@@ -38,9 +39,9 @@ function Employer() {
 
           <div className="container mt-3">
             <Switch>
-              <Route exact path={["/", "/jobs"]} component={jobList} />
+              <Route exact path={["/", "/job"]} component={jobList} />
               <Route exact path="/add" component={addJob} />
-              <Route path="/jobs/:id" component={Job} />
+              <Route path="/job/:jobID" component={Job} />
             </Switch>
           </div>
         </div>
