@@ -14,6 +14,10 @@ class UserDataService {
     return http.get(`/user/${id}`);
   }
 
+  get(email) {
+    return http.get(`/user/${email}`);
+  }
+
   update(id, data) {
     return http.put(`/user/${id}`, data);
   }
