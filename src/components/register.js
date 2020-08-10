@@ -125,7 +125,9 @@ export default class SignUp extends Component {
                 <div className="form-group">
                   <label>Membership</label>
                   <select id="membership" name="membership" className="form-control" onChange={this.onChange}>
-                    <option defaultValue="none" selected disabled hidden>Please choose a membership</option>
+
+                    <option defaultValue="none" disabled hidden>Please choose a membership</option>
+
                     <option value="basic">Basic</option>
                     <option value="prime">Prime</option>
                     <option value="gold">Gold</option>
@@ -135,7 +137,9 @@ export default class SignUp extends Component {
                 <div className="form-group">
                   <label>Membership</label>
                   <select id="userType" name="userType" className="form-control" onChange={this.onChange}>
-                    <option defaultValue="none" selected disabled hidden>Choose your account type</option>
+
+                    <option defaultValue="none" disabled hidden>Choose your account type</option>
+
                     <option value="employee">Employee</option>
                     <option value="employer">Employer</option>
                     <option value="admin">Administrator</option>

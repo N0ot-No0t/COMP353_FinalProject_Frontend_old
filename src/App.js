@@ -8,7 +8,7 @@ import {
   //useRouteMatch
 } from "react-router-dom";
 import Employer from './Employer';
-import User from './User';
+import Employee from './Employee';
 import Admin from './Admin';
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -27,7 +27,7 @@ function App() {
             </div>
               <Link to="/Employer">Employer</Link>
             <div> 
-               <Link to="/User">User</Link>
+               <Link to="/Employee">Employee</Link>
             </div>
             <div> 
                <Link to="/Admin">Admin</Link>
@@ -40,8 +40,8 @@ function App() {
           <Route path="/Employer" component={Employer}>
             <Employer />
           </Route>
-          <Route path="/User" component={User}>
-            <User />
+          <Route path="/Employee" component={Employee}>
+            <Employee />
           </Route>
           <Route path="/Home">
             <Home />
