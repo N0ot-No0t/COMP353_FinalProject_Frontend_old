@@ -30,6 +30,10 @@ class UserDataService {
     return http.get(`/user?firstName=${firstName}`);
   }
 
+  verifyUser(email, password){
+    return http.get(`/user/auth/${email}/${password}`);
+  }
+
 }
 
 export default new UserDataService();

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import UserDataService from "../services/userService";
+import JobDataService from "../services/jobService";
 
 
 export default class User extends Component {
@@ -116,7 +117,10 @@ export default class User extends Component {
       });
   }
 
-  deleteUser() {    
+  deleteUser() {
+      
+    //JobDataService.
+
     UserDataService.delete(this.state.currentUser.userID)
       .then(response => {
         console.log(response.data);

@@ -1,20 +1,13 @@
 import React from 'react';
 import './App.css';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  //useRouteMatch
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import addJob from "./components/addJob";
-import Job from "./components/jobComponentEmployer";
-import jobList from "./components/jobListComponentEmployer";
+import Job from "./components/jobComponentEmployee";
+import jobList from "./components/jobListComponentEmployee";
 
-
-function Employer() {
+function User() {
   return (
+    
     <div className="App">
       <header className="App-header">
       <Router>
@@ -30,9 +23,6 @@ function Employer() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to={"/add"} className="nav-link">
-                  Add
-                </Link>
               </li>
             </div>
           </nav>
@@ -40,7 +30,6 @@ function Employer() {
           <div className="container mt-3">
             <Switch>
               <Route exact path={["/", "/job"]} component={jobList} />
-              <Route exact path="/add" component={addJob} />
               <Route path="/job/:jobID" component={Job} />
             </Switch>
           </div>
@@ -48,7 +37,8 @@ function Employer() {
       </Router>
       </header>
     </div>
+
   );
 }
 
-export default Employer;
+export default User;
