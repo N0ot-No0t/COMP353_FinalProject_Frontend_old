@@ -14,6 +14,10 @@ class UserDataService {
     return http.get(`/user/${id}`);
   }
 
+  get(email) {
+    return http.get(`/user/${email}`);
+  }
+
   update(id, data) {
     return http.put(`/user/${id}`, data);
   }
@@ -28,6 +32,10 @@ class UserDataService {
 
   findByName(firstName) {
     return http.get(`/user?firstName=${firstName}`);
+  }
+
+  verifyUser(email, password){
+    return http.get(`/user/auth/${email}/${password}`);
   }
 
 }
