@@ -1,3 +1,6 @@
+import { Redirect } from 'react-router';
+import {withRouter} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { FormControl } from '@material-ui/core';
 import { FormControlLabel } from '@material-ui/core';
 import { FormLabel } from '@material-ui/core';
@@ -5,7 +8,10 @@ import { Radio } from '@material-ui/core';
 import { RadioGroup } from '@material-ui/core';
 import React, { Component } from "react";
 import UserDataService from "../services/userService";
+import Login from "./login";
 const axios = require('axios');
+
+
 
 
 
@@ -43,6 +49,8 @@ export default class SignUp extends Component {
     // get our form data out of state
     // const { fName, lName, email, password } = this.state;
     
+    this.setState({redirect: true});
+
     var data = {
       email: this.state.email,
       password: this.state.password,
@@ -58,39 +66,12 @@ export default class SignUp extends Component {
     console.log("New user added: " + data.firstName + " " + data.lastName);
 
     UserDataService.create(data)
-      // .then(response => {
-      //   this.setState({
-      //     userId: response.data.userId,
-      //     userType: response.data.userType,
-      //     email: response.data.email,
-      //     membership: response.data.membership,
-      //     password: response.data.password,
-      //     accountBalance: response.data.accountBalance,
-      //     firstName: response.data.firstName,
-      //     lastName: response.data.lastName,
-      //     accountStatus: response.data.accountStatus,
-      //     isFrozen: response.data.isFrozen
-      //   });
-      //   console.log(response.data);
-      // })
       .catch(e => {
         console.log(e);
+
+      
       });
-  
-
-    /*
-
-    axios.post('/', { fName, lName, email, password })
-      .then((result) => {
-        //access the results here....
-
-        console.log("Info retrieved: "+fName +" "+ lName +" "+ email +" "+ password);
-
-      });
-
-      */
-
-    //  console.log("Info retrieved: "+fName +" "+ lName +" "+ email +" "+ password);
+      
   }
 
 
@@ -105,12 +86,20 @@ export default class SignUp extends Component {
     });
   }
     
+  visitPage() {
+    window.location='hhttp://localhost:3311/sign-in'
+  }
+
     render() {
 
         const { fName, lName, email, password, membership, userType} = this.state;
+        
+        if (this.state.redirect) {
+          return <Redirect push to="/sign-in" />;
+        }
 
         return (
-            <form onSubmit={this.onSubmit}>
+            <form onSubmit={this.onSubmit.bind(this)}>
                 <h3>Sign Up</h3>
 
                 <div className="form-group">
@@ -136,7 +125,7 @@ export default class SignUp extends Component {
                 <div className="form-group">
                   <label>Membership</label>
                   <select id="membership" name="membership" className="form-control" onChange={this.onChange}>
-                    <option value="none" selected disabled hidden>Please choose a membership</option>
+                    <option defaultValue="none" selected disabled hidden>Please choose a membership</option>
                     <option value="basic">Basic</option>
                     <option value="prime">Prime</option>
                     <option value="gold">Gold</option>
@@ -146,37 +135,20 @@ export default class SignUp extends Component {
                 <div className="form-group">
                   <label>Membership</label>
                   <select id="userType" name="userType" className="form-control" onChange={this.onChange}>
-                    <option value="none" selected disabled hidden>Choose your account type</option>
+                    <option defaultValue="none" selected disabled hidden>Choose your account type</option>
                     <option value="employee">Employee</option>
                     <option value="employer">Employer</option>
                     <option value="admin">Administrator</option>
                   </select>
                 </div>
-                
-                {/* <div className="form-group">
-                    <label>Membership:</label><br></br>
-                    <input type="radio" name="membership" value="basic" className="radioM"></input>
-                      <label>Basic</label><br></br>
-                    <input type="radio" name="membership" value="prime" className="radioM"></input>
-                      <label>Prime</label><br></br>
-                    <input type="radio" name="membership" value="gold" className="radioM"></input>
-                      <label>Gold</label><br></br>
-                </div>
 
-                <div className="form-group">
-                    <label>User type:</label><br></br>
-                    <input type="radio" name="userType" value="employee" className="radioT"></input>
-                      <label>Employee</label><br></br>
-                    <input type="radio" name="userType" value="employer" className="radioT"></input>
-                      <label>Employer</label><br></br>
-                    <input type="radio" name="userType" value="administrator" className="radioT"></input>
-                      <label>Administrator</label><br></br>
-                </div> */}
-
-                <button type="submit" className="btn btn-primary btn-block" onClick={this.handleSubmit}>Sign Up</button>
+                <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
                 <p className="forgot-password text-right">
-                    Already registered <a href="#">sign in?</a>
+                    Already registered? <Link to={"/sign-in"}>sign in</Link>
                 </p>
+                <Switch>
+                  <Route path="/sign-in" component={Login} />
+                </Switch>
             </form>
         );
     }
